@@ -1,0 +1,37 @@
+
+package org.mockito;
+
+import java.lang.annotation.*;
+
+/**
+ * Allows shorthand {@link org.mockito.ArgumentCaptor} creation on fields.
+ *
+ * <p>Example:
+ * <pre class="code"><code class="java">
+ * public class Test{
+ *
+ *    &#64;Captor ArgumentCaptor&lt;AsyncCallback&lt;Foo&gt;&gt; captor;
+ *
+ *    &#64;Before
+ *    public void init(){
+ *       MockitoAnnotations.initMocks(this);
+ *    }
+ *
+ *    &#64;Test public void shouldDoSomethingUseful() {
+ *       //...
+ *       verify(mock).doStuff(captor.capture());
+ *       assertEquals("foo", captor.getValue());
+ *    }
+ * }
+ * </code></pre>
+ *
+ * <p>
+ * One of the advantages of using &#64;Captor annotation is that you can avoid warnings related capturing complex generic types.
+ *
+ * @see ArgumentCaptor
+ * @since 1.8.3
+ */
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+@Documented
+public @interface Captor {}
